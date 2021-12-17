@@ -15,8 +15,8 @@ public class RegisterSuccessful extends AppCompatActivity {
         setContentView(R.layout.activity_register_successful);
     }
     public void buttonListener(View view) {
-        Button button = findViewById(R.id.button);
-        Intent intent = new Intent(RegisterSuccessful.this, QuestionActivity.class);
+        Button button = findViewById(R.id.test1);
+        Intent intent = new Intent(RegisterSuccessful.this, TestingMenuActivity.class);
         startActivity(intent);
     }
 }

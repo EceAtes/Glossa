@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Glossa">
         <activity
+            android:name=".FillInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TestingMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".ScoreActivity"
             android:exported="false" />
         <activity

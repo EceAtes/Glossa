@@ -59,21 +59,21 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private void getQuestionsList() {
         questionList = new ArrayList<>();
 
-        questionList.add(new Question("Question 1", "A", "B", "C","D",4));
-        questionList.add(new Question("Question 2", "b", "c", "a","d",4));
-        questionList.add(new Question("Question 3", "y", "n", "k","s",4));
-        questionList.add(new Question("Question 4", "r", "t", "b","v",4));
-        questionList.add(new Question("Question 5", "w", "e", "n","x",4));
+        questionList.add(new MultipleChoiceQuestion("Question 1", "A", "B", "C","D","4"));
+        questionList.add(new MultipleChoiceQuestion("Question 2", "b", "c", "a","d","4"));
+        questionList.add(new MultipleChoiceQuestion("Question 3", "y", "n", "k","s","4"));
+        questionList.add(new MultipleChoiceQuestion("Question 4", "r", "t", "b","v","4"));
+        questionList.add(new MultipleChoiceQuestion("Question 5", "w", "e", "n","x","4"));
 
         setQuestion();
     }
 
     private void setQuestion() {
         question.setText(questionList.get(0).getQuestion());
-        option1.setText(questionList.get(0).getOption1());
-        option2.setText(questionList.get(0).getOption2());
-        option3.setText(questionList.get(0).getOption3());
-        option4.setText(questionList.get(0).getOption4());
+        option1.setText(((MultipleChoiceQuestion)questionList.get(0)).getOption1());
+        option2.setText(((MultipleChoiceQuestion)questionList.get(0)).getOption2());
+        option3.setText(((MultipleChoiceQuestion)questionList.get(0)).getOption3());
+        option4.setText(((MultipleChoiceQuestion)questionList.get(0)).getOption4());
 
         qNum.setText(String.valueOf(1) + "/" + String.valueOf(questionList.size()));
     }
@@ -110,12 +110,17 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             default:
         }
 
+        //selectedOption = 4;
         checkAnswer(selectedOption,v);
 
     }
 
     private void checkAnswer(int selectedOption, View view) {
-        if(selectedOption == questionList.get(currQues).getAnswer()){
+        //Toast.makeText(this, selectedOption + "", Toast.LENGTH_SHORT).show();
+        boolean b = questionList.get(currQues).checkAnswer(selectedOption);
+        Toast.makeText(this, "" + b , Toast.LENGTH_SHORT).show();
+        if(questionList.get(currQues).checkAnswer(selectedOption)){
+
             ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             score++;
 
@@ -123,20 +128,33 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         } else {
             ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.RED));
 
-            switch(questionList.get(currQues).getAnswer()){
-                case 1:
-                    option1.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    break;
-                case 2:
-                    option2.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    break;
-                case 3:
-                    option3.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    break;
-                case 4:
-                    option4.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    break;
+            if(questionList.get(currQues).getAnswer().equals("1")){
+                option1.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             }
+            else if(questionList.get(currQues).getAnswer().equals("2")){
+                option2.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            }
+            else if (questionList.get(currQues).getAnswer().equals("3")){
+                option3.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            }
+            else if(questionList.get(currQues).getAnswer().equals("4")){
+                option4.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            }
+//            switch(questionList.get(currQues).getAnswer()){
+//
+//                case 1:
+//
+//                    break;
+//                case 2:
+//
+//                    break;
+//                case 3:
+//
+//                    break;
+//                case 4:
+//
+//                    break;
+//            }
 
 
 
@@ -147,7 +165,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    private void nextQuestion( final View view, int selected) {
+    private void nextQuestion( View view, int selected) {
         //Toast.makeText(this, "Entered", Toast.LENGTH_SHORT).show();
         if(currQues == questionList.size()-1){
             //display score - activity
@@ -188,7 +206,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     private void playAnimation(View view, final int value, int component) {
 
-        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500).setStartDelay(200)
+        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500).setStartDelay(150)
                 .setInterpolator(new DecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -203,16 +221,16 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                             ((TextView) view).setText(questionList.get(currQues).getQuestion());
                             break;
                         case 1:
-                            ((Button) view).setText(questionList.get(currQues).getOption1());
+                            ((Button) view).setText(((MultipleChoiceQuestion)questionList.get(currQues)).getOption1());
                             break;
                         case 2:
-                            ((Button) view).setText(questionList.get(currQues).getOption2());
+                            ((Button) view).setText(((MultipleChoiceQuestion)questionList.get(currQues)).getOption2());
                             break;
                         case 3:
-                            ((Button) view).setText(questionList.get(currQues).getOption3());
+                            ((Button) view).setText(((MultipleChoiceQuestion)questionList.get(currQues)).getOption3());
                             break;
                         case 4:
-                            ((Button) view).setText(questionList.get(currQues).getOption4());
+                            ((Button) view).setText(((MultipleChoiceQuestion)questionList.get(currQues)).getOption4());
                             break;
                     }
                     playAnimation(view, 1, component);
@@ -233,9 +251,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
             }
         }); {
-
-
-
 
         }
     }

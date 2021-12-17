@@ -1,25 +1,20 @@
 package com.example.glossa;
 
 public class Question {
-    String Question, option1, option2, option3, option4;
-    int answer;
+    protected String Question, option1, option2, option3, option4;
+    protected String correctAnswer;
 
-
-    public Question(String question, String option1, String option2, String option3, String option4, int answer) {
+    public Question(String question, String option1, String option2, String option3, String option4,  String correctAnswer) {
         Question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
         this.option4 = option4;
-        this.answer = answer;
+        this.correctAnswer = correctAnswer;
     }
-
-    public String getQuestion() {
-        return Question;
-    }
-
-    public void setQuestion(String question) {
+    public Question(String question, String correctAnswer) {
         Question = question;
+        this.correctAnswer = correctAnswer;
     }
 
     public String getOption1() {
@@ -54,11 +49,28 @@ public class Question {
         this.option4 = option4;
     }
 
-    public int getAnswer() {
-        return answer;
+    public String getQuestion() {
+
+        return Question;
     }
 
-    public void setAnswer(int answer) {
-        this.answer = answer;
+    public void setQuestion(String question) {
+
+        Question = question;
     }
+
+    public String getAnswer() {
+
+        return correctAnswer;
+    }
+
+    public void setAnswer(String answer) {
+
+        this.correctAnswer = answer;
+    }
+
+    public boolean checkAnswer(Object obj){
+        return false;
+    }
+
 }
