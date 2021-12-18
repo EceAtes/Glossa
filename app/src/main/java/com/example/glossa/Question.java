@@ -1,8 +1,7 @@
 package com.example.glossa;
 
 public class Question {
-    protected String Question, option1, option2, option3, option4;
-    protected String correctAnswer;
+    protected String Question, option1, option2, option3, option4, correctAnswer;
 
     public Question(String question, String option1, String option2, String option3, String option4,  String correctAnswer) {
         Question = question;

@@ -3,6 +3,7 @@ package com.example.glossa;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -45,6 +46,7 @@ public class FillInActivity extends AppCompatActivity implements View.OnClickLis
         checkerText = findViewById(R.id.rightWrongText);
         checkerButton = findViewById(R.id.checkAnswer);
 
+        currQues = 0;
         questionList = new ArrayList<>();
         //questionList.add(new FillInQuestion("Question 1", "A"));
 
@@ -63,19 +65,20 @@ public class FillInActivity extends AppCompatActivity implements View.OnClickLis
         questionList.add(new FillInQuestion("Question 5, answer is g", "g"));
 
         qNum.setText(String.valueOf(1) + "/" + String.valueOf(questionList.size()));
+        question.setText(questionList.get(0).getQuestion());
     }
 
     @Override
     public void onClick(View v) {
         System.out.println("enteredonclick");
-        answer = "" + userIn.getText();
+        answer = ("" + userIn.getText()).trim();
 
-        checkAnswer(answer,v);
+        checkAnswer(v,answer);
     }
 
 
 
-    private void checkAnswer(String answer, View v) {
+    private void checkAnswer(View v, String answer) {
         System.out.println("enteredcheckanswer");
         if (questionList.get(currQues).checkAnswer(answer)) {
 
@@ -93,11 +96,11 @@ public class FillInActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-        nextQuestion(answer, v);
+        nextQuestion(v,answer);
         //nextQuestion(view, answer);
     }
 
-    public void nextQuestion(String answer, View v){
+    public void nextQuestion(View v, String answer){
         System.out.println("entered next question");
         if(currQues == questionList.size()-1) {
             //display score - activity
@@ -129,7 +132,7 @@ public class FillInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void playAnimation(View view, int value, int component) {
 
-        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500).setStartDelay(650)
+        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(350).setStartDelay(650)
                 .setInterpolator(new DecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {

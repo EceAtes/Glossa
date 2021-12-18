@@ -6,7 +6,6 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionActivity extends AppCompatActivity implements View.OnClickListener {
+public class MultipleQuestionActivity extends AppCompatActivity implements View.OnClickListener {
     boolean isUsed = false;
     private Button option1,
             option2,
@@ -35,7 +34,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question);
+        setContentView(R.layout.activity_question_multiple);
         question = findViewById(R.id.question);
         qNum = findViewById(R.id.quesCount);
         currQues = 0;
@@ -65,10 +64,10 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         questionList.add(new MultipleChoiceQuestion("Question 4", "r", "t", "b","v","4"));
         questionList.add(new MultipleChoiceQuestion("Question 5", "w", "e", "n","x","4"));
 
-        setQuestion();
+        setFirstQuestion();
     }
 
-    private void setQuestion() {
+    private void setFirstQuestion() {
         question.setText(questionList.get(0).getQuestion());
         option1.setText(((MultipleChoiceQuestion)questionList.get(0)).getOption1());
         option2.setText(((MultipleChoiceQuestion)questionList.get(0)).getOption2());
@@ -92,34 +91,34 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        int selectedOption = 0;
+        int answer = 0;
 
         switch (v.getId()){
             case R.id.option1 :
-                selectedOption = 1;
+                answer = 1;
                 break;
             case R.id.option2 :
-                selectedOption = 2;
+                answer = 2;
                 break;
             case R.id.option3 :
-                selectedOption = 3;
+                answer = 3;
                 break;
             case R.id.option4 :
-                selectedOption = 4;
+                answer = 4;
                 break;
             default:
         }
 
-        //selectedOption = 4;
-        checkAnswer(selectedOption,v);
+        //answer = 4;
+        checkAnswer(v,answer);
 
     }
 
-    private void checkAnswer(int selectedOption, View view) {
-        //Toast.makeText(this, selectedOption + "", Toast.LENGTH_SHORT).show();
-        boolean b = questionList.get(currQues).checkAnswer(selectedOption);
-        Toast.makeText(this, "" + b , Toast.LENGTH_SHORT).show();
-        if(questionList.get(currQues).checkAnswer(selectedOption)){
+    private void checkAnswer(View view, int answer) {
+        //Toast.makeText(this, answer + "", Toast.LENGTH_SHORT).show();
+//        boolean b = questionList.get(currQues).checkAnswer(answer);
+//        Toast.makeText(this, "" + b , Toast.LENGTH_SHORT).show();
+        if(questionList.get(currQues).checkAnswer(answer)){
 
             ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             score++;
@@ -161,7 +160,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         }
 
 
-        nextQuestion(view, selectedOption);
+        nextQuestion(view, answer);
 
     }
 
@@ -169,10 +168,10 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         //Toast.makeText(this, "Entered", Toast.LENGTH_SHORT).show();
         if(currQues == questionList.size()-1){
             //display score - activity
-            Intent intent = new Intent(QuestionActivity.this, ScoreActivity.class);
+            Intent intent = new Intent(MultipleQuestionActivity.this, ScoreActivity.class);
             intent.putExtra("Score",String.valueOf(score) + "/" + String.valueOf(questionList.size()));
             startActivity(intent);
-            QuestionActivity.this.finish();
+            MultipleQuestionActivity.this.finish();
 
 
         } else {
@@ -204,9 +203,9 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private void playAnimation(View view, final int value, int component) {
+    private void playAnimation(View view, int value, int component) {
 
-        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500).setStartDelay(150)
+        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500).setStartDelay(500)
                 .setInterpolator(new DecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {

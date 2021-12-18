@@ -16,7 +16,7 @@ public class RegisterSuccessful extends AppCompatActivity {
     }
     public void buttonListener(View view) {
         Button button = findViewById(R.id.test1);
-        Intent intent = new Intent(RegisterSuccessful.this, TestingMenuActivity.class);
+        Intent intent = new Intent(RegisterSuccessful.this, ProficiencyScoreActivity.class);
         startActivity(intent);
     }
 }
