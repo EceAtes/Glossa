@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".TestingMenuActivity">
 
+
     <TextView
         android:id="@+id/Title"
         android:layout_width="0dp"

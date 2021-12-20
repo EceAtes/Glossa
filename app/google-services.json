@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "891662557067",
+    "project_id": "glossa-4dc57",
+    "storage_bucket": "glossa-4dc57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891662557067:android:61b842bc3728d594a0998e",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891662557067-ou580fl6n5c6q4o2qrdvd2ivt38ei1gv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "16ca05771b1d71376b8eafa8ff8fc7a12eef3c74"
+          }
+        },
+        {
+          "client_id": "891662557067-eikl21edb6tdbfct60evc6tlk75l69fv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJFg8pFAnhGW-WkD3GQNTlIUzMoGxZdWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891662557067-eikl21edb6tdbfct60evc6tlk75l69fv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

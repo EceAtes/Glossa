@@ -1,5 +1,6 @@
 package com.example.glossa;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
@@ -19,6 +20,11 @@ import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +39,9 @@ public class FillInActivity extends AppCompatActivity implements View.OnClickLis
     private int currQues,
             score;
     private Button checkerButton;
+    private FirebaseFirestore firestore;
+    private DocumentReference documentReference;
+    private int category_id;
 
 
     @Override
@@ -46,9 +55,13 @@ public class FillInActivity extends AppCompatActivity implements View.OnClickLis
         checkerText = findViewById(R.id.rightWrongText);
         checkerButton = findViewById(R.id.checkAnswer);
 
+        //category_id = getIntent().........
+
         currQues = 0;
         questionList = new ArrayList<>();
         //questionList.add(new FillInQuestion("Question 1", "A"));
+
+        firestore = FirebaseFirestore.getInstance();
 
         getQuestionList();
 
@@ -57,7 +70,14 @@ public class FillInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void getQuestionList(){
         questionList  = new ArrayList<>();
-        System.out.println("EnteredFillIn");
+        documentReference = firestore.collection("Testing/Level1/Test1").document("Question" + (currQues+1));
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+
+            }
+        });
+        //firestore.collection("Testing").document("Level1" + );
         questionList.add(new FillInQuestion("Question 1, answer is a", "a"));
         questionList.add(new FillInQuestion("Question 2, answer is ss", "ss"));
         questionList.add(new FillInQuestion("Question 3, answer is d d", "d d"));

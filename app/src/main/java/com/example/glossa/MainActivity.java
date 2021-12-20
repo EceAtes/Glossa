@@ -1,5 +1,6 @@
 package com.example.glossa;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,8 +9,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,20 +27,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonListener(View view){
-//        TextView txtName = findViewById(R.id.nameTxt);
-//        TextView txtSurname = findViewById(R.id.surnameTxt);
-//        TextView txtEmail = findViewById(R.id.emailTxt);
-//
-//        EditText edtName = findViewById(R.id.name);
-//        EditText edtSurname = findViewById(R.id.surname);
-//        EditText edtEmail = findViewById(R.id.email);
-//
-//        txtName.setText("Name: " + edtName.getText().toString());
-//        txtSurname.setText("Surname: " + edtSurname.getText().toString());
-//        txtEmail.setText("Email: " + edtEmail.getText().toString());
 
+
+        EditText edtNick = findViewById(R.id.nickname);
+        EditText edtName = findViewById(R.id.name);
+        EditText edtSurname = findViewById(R.id.surname);
+        EditText edtEmail = findViewById(R.id.email);
         Button button = findViewById(R.id.button);
-        Intent intent = new Intent(MainActivity.this, RegisterSuccessful.class);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nick = edtNick.getText().toString();
+                String name = edtName.getText().toString();
+                String surname = edtSurname.getText().toString();
+                String email = edtEmail.getText().toString();
+
+                Map<String,Object> user = new HashMap<>();
+                user.put("email",email);
+                user.put("name",name);
+                user.put("surname",surname);
+                user.put("nickname",nick);
+
+                db.collection("GlossaTest").add(user)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        System.out.println("Success!");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println("Fail :(");;
+                    }
+                });
+
+            }
+        });
+        Intent intent = new Intent(MainActivity.this, FirebaseTest.class);
         startActivity(intent);
 
     }

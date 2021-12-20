@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Glossa">
         <activity
+            android:name=".FirebaseTest"
+            android:exported="false" />
+        <activity
+            android:name=".LearningActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserAchievementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Flashcards"
+            android:exported="false" />
+        <activity
+            android:name=".ShortNotesActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProficiencyScoreActivity"
             android:exported="false" />
         <activity
