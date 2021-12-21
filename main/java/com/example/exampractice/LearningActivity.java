@@ -1,5 +1,7 @@
 package com.example.exampractice;
 
+import static com.example.exampractice.SplashActivity.catList;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -24,14 +26,7 @@ public class LearningActivity extends AppCompatActivity {
 
         catGrid = findViewById(R.id.catGridView);
 
-        List<Topic> catList = new ArrayList<>();
 
-        catList.add(new Topic("History"));
-        catList.add(new Topic("Jobs"));
-        catList.add(new Topic("School"));
-        catList.add(new Topic("Movies"));
-
-        System.out.println("entered learning");
 
         CatGridAdapter adapter = new CatGridAdapter(catList);
         catGrid.setAdapter(adapter);

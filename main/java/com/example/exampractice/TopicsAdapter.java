@@ -1,6 +1,5 @@
 package com.example.exampractice;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,21 +7,22 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class CatGridAdapter extends BaseAdapter {
+public class TopicsAdapter extends BaseAdapter {
 
-    private List<Topic> catList;
+    private int noOfTopics;
 
-    public CatGridAdapter(List<Topic> catList) {
-        this.catList = catList;
+    public TopicsAdapter(int noOfTopics) {
+        this.noOfTopics = noOfTopics;
     }
+
 
     @Override
     public int getCount() {
-        return catList.size();
+        return noOfTopics;
     }
 
     @Override
@@ -37,26 +37,17 @@ public class CatGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         View view;
 
         if(convertView == null) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cat_item_layout, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.topic_item_layout, parent, false);
         }
         else {
             view = convertView;
         }
 
-        view.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(parent.getContext(), TopicsActivity.class);
-                parent.getContext().startActivity(intent);
-            }
-        });
-
-        ((TextView) view.findViewById(R.id.catName)).setText(catList.get(position).getName());
+        ((TextView) view.findViewById(R.id.topicNo_tv)).setText(String.valueOf(position+1));
 
         Random rnd = new Random();
         int color = Color.argb(255, rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255));
@@ -64,5 +55,4 @@ public class CatGridAdapter extends BaseAdapter {
 
         return view;
     }
-
 }
