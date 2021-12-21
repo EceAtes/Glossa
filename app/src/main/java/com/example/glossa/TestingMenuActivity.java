@@ -7,34 +7,44 @@ import android.os.Bundle;
 import android.view.View;
 
 public class TestingMenuActivity extends AppCompatActivity implements View.OnClickListener{
-
+//   Intent i_m;
+//   Intent intent;
+    String testCode = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_testing_menu);
+//        i_m = new Intent(TestingMenuActivity.this, MultipleQuestionActivity.class);
+//        intent = new Intent(TestingMenuActivity.this, FillInActivity.class);
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent;
+        Intent intent = new Intent(TestingMenuActivity.this, MultipleQuestionActivity.class);
         switch(v.getId()){
             case(R.id.test1) :
-                intent = new Intent(TestingMenuActivity.this, MultipleQuestionActivity.class);
+                testCode = "Test1";
+                intent.putExtra("testNo", testCode);
                 startActivity(intent);
                 TestingMenuActivity.this.finish();
                 break;
             case(R.id.test2) :
-                intent = new Intent(TestingMenuActivity.this, MultipleQuestionActivity.class);
+                testCode = "Test2";
+                intent.putExtra("testNo", testCode);
                 startActivity(intent);
                 TestingMenuActivity.this.finish();
                 break;
             case(R.id.test3) :
                 intent = new Intent(TestingMenuActivity.this,FillInActivity.class);
+                testCode = "Test3";
+                intent.putExtra("testNo", testCode);
                 startActivity(intent);
                 TestingMenuActivity.this.finish();
                 break;
             case(R.id.test4) :
                 intent = new Intent(TestingMenuActivity.this,FillInActivity.class);
+                testCode = "Test4";
+                intent.putExtra("testNo", testCode);
                 startActivity(intent);
                 TestingMenuActivity.this.finish();
                 break;

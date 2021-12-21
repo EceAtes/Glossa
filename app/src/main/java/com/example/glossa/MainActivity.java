@@ -1,25 +1,14 @@
 package com.example.glossa;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     //FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -48,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                Intent intent = new Intent(MainActivity.this, ProficiencyExamActivity.class);
+                Intent intent = new Intent(MainActivity.this, Login.class);
                 startActivity(intent);
 //                SplashActivity.this.finish();
 

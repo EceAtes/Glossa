@@ -7,12 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProficiencyScoreActivity extends AppCompatActivity implements View.OnClickListener{
     int score,
         qNum;
+    String name;
+//    User user;
+//    String username;
+//    String email;
+//    String password;
     String level,
-           explanation = "You will skip the test stages tat are lower than your level!";
+           explanation = "You will skip the test stages that are lower than your level!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +27,12 @@ public class ProficiencyScoreActivity extends AppCompatActivity implements View.
 
         score = getIntent().getIntExtra("Score",0);
         qNum = getIntent().getIntExtra("List size", 0);
+//        String name = getIntent().getStringExtra("name");
+//        String  username = getIntent().getStringExtra("username");
+//        String email = getIntent().getStringExtra("email");
+//        String password = getIntent().getStringExtra("password");
 
+        ;
 //        score = 0;
 //        qNum = 10;
 
@@ -39,10 +50,11 @@ public class ProficiencyScoreActivity extends AppCompatActivity implements View.
     }
 
     private void determineLevel(int score, int qNum) {
+
         int percentage = (score * 100) / qNum;
         if(percentage <= 25){
-           level = "A1.1";
-           explanation = "You will start the test from the beginning!";
+            level = "A1.1";
+            explanation = "You will start the test from the beginning!";
         }
         else if( percentage <= 50){
             level = "A1.2";
@@ -50,8 +62,10 @@ public class ProficiencyScoreActivity extends AppCompatActivity implements View.
         else if(percentage <=75){
             level = "A2.1";
         } else{
-          level = "A2.2";
+            level = "A2.2";
         }
+        register.getUser().setLevel(level);
+        System.out.println(register.getUser().getLevel());
     }
 
     @Override

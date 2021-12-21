@@ -1,21 +1,21 @@
 package com.example.glossa;
 
 public class UserAchievement {
-    int totatTests, compTest;
+    int totalTests, compTest;
     double compPercentage;
 
-    public UserAchievement(int totatTests, int compTest, double compPercentage) {
-        this.totatTests = totatTests;
+    public UserAchievement(int totalTests, int compTest, double compPercentage) {
+        this.totalTests = totalTests;
         this.compTest = compTest;
         this.compPercentage = compPercentage;
     }
 
-    public int getTotatTests() {
-        return totatTests;
+    public int getTotalTests() {
+        return totalTests;
     }
 
-    public void setTotatTests(int totatTests) {
-        this.totatTests = totatTests;
+    public void setTotalTests(int totalTests) {
+        this.totalTests = totalTests;
     }
 
     public int getCompTest() {

@@ -33,6 +33,7 @@ public class ProficiencyExamActivity extends AppCompatActivity implements View.O
                      checkerText;
     private List<Question> questionList;
     private Question current;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class ProficiencyExamActivity extends AppCompatActivity implements View.O
         option4.setOnClickListener(this);
 
         getQuestionsList();
+        //user =
 
         score = 0;
 

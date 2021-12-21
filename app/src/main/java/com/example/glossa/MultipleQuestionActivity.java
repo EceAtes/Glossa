@@ -49,6 +49,7 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
     private List<Question> questionList;
     private int currQues,
             score;
+    private String testNo;
 
 
     @Override
@@ -69,64 +70,125 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
         option3.setOnClickListener(this);
         option4.setOnClickListener(this);
 
-        questionList = new ArrayList<>();
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                testNo = null;
+            } else {
+                testNo= extras.getString("testNo");
+            }
+        } else {
+            testNo = (String) savedInstanceState.getSerializable("testNo");
+        }
 
-        getQuestionsList();
+        questionList = new ArrayList<>();
+        System.out.println(testNo);
+        getQuestionsList(testNo);
        //System.out.println(db.collection("Testing/Level1/Test1").get(Source.valueOf("QU1")));
         score = 0;
 
     }
 
-    private void getQuestionsList() {
+    private void getQuestionsList(String newString) {
 
-        mDatabase.child("A1-1").child("Test1").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String question = "", A = "", B = "", C = "", D = "", answer = "";
-                int counter = 0;
-                for (DataSnapshot children : dataSnapshot.getChildren()) {
-                    for (DataSnapshot child : children.getChildren()) {
-                        if (child.getKey().equals("Question")) {
-                            question = child.getValue().toString();
-                            counter++;
-                            System.out.println(question + " " +  counter);
-                        }
-                        else if (child.getKey().equals("answer")) {
-                            answer = child.getValue() + "";
-                            counter++;
-                            System.out.println(answer + " " +  counter);
-                        }
-                        else if (child.getKey().equals("A")) {
-                            A = child.getValue().toString();
-                            counter++;
-                            System.out.println(A + " " +  counter);
 
+        System.out.println(newString);
+
+        if (newString.equals("Proficiency")) {
+            System.out.println("entered if get questions");
+            mDatabase.child(newString).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String question = "", A = "", B = "", C = "", D = "", answer = "";
+                    int counter = 0;
+                    for (DataSnapshot children : dataSnapshot.getChildren()) {
+                        for (DataSnapshot child : children.getChildren()) {
+                            if (child.getKey().equals("Question")) {
+                                question = child.getValue().toString();
+                                counter++;
+                                System.out.println(question + " " + counter);
+                            } else if (child.getKey().equals("answer")) {
+                                answer = child.getValue() + "";
+                                counter++;
+                                System.out.println(answer + " " + counter);
+                            } else if (child.getKey().equals("A")) {
+                                A = child.getValue().toString();
+                                counter++;
+                                System.out.println(A + " " + counter);
+
+                            } else if (child.getKey().equals("B")) {
+                                B = child.getValue().toString();
+                                counter++;
+                                System.out.println(B + " " + counter);
+                            } else if (child.getKey().equals("C")) {
+                                C = child.getValue().toString();
+                                counter++;
+                                System.out.println(C + " " + counter);
+                            } else if (child.getKey().equals("D")) {
+                                D = child.getValue().toString();
+
+                                counter++;
+                                System.out.println(D + " " + counter);
+                            }
                         }
-                        else if (child.getKey().equals("B")) {
-                            B = child.getValue().toString();
-                            counter++;
-                            System.out.println(B + " " +  counter);
-                        }
-                        else if (child.getKey().equals("C")) {
-                            C = child.getValue().toString();
-                            counter++;
-                            System.out.println(C + " " +  counter);
-                        }
-                        else if (child.getKey().equals("D")) {
-                            D = child.getValue().toString();
-                            counter++;
-                            System.out.println(D + " " +  counter);
-                        }
+                        questionList.add(new MultipleChoiceQuestion(question, A, B, C, D, answer));
+                        System.out.println(answer);
                     }
-                    questionList.add(new MultipleChoiceQuestion(question, A, B, C,D,answer));
+                    setFirstQuestion();
                 }
-                setFirstQuestion();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        } else {
+            mDatabase.child("A1-1").child(newString).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String question = "", A = "", B = "", C = "", D = "", answer = "";
+                    int counter = 0;
+                    for (DataSnapshot children : dataSnapshot.getChildren()) {
+                        for (DataSnapshot child : children.getChildren()) {
+                            if (child.getKey().equals("Question")) {
+                                question = child.getValue().toString();
+                                counter++;
+                                //Systemout.println(question + " " +  counter);
+                            } else if (child.getKey().equals("answer")) {
+                                answer = child.getValue() + "";
+                                counter++;
+                                //Systemout.println(answer + " " +  counter);
+                            } else if (child.getKey().equals("A")) {
+                                A = child.getValue().toString();
+                                counter++;
+                                //Systemout.println(A + " " +  counter);
+
+                            } else if (child.getKey().equals("B")) {
+                                B = child.getValue().toString();
+                                counter++;
+                                //Systemout.println(B + " " +  counter);
+                            } else if (child.getKey().equals("C")) {
+                                C = child.getValue().toString();
+                                counter++;
+                                //Systemout.println(C + " " +  counter);
+                            } else if (child.getKey().equals("D")) {
+                                D = child.getValue().toString();
+                                counter++;
+                                //Systemout.println(D + " " +  counter);
+                            }
+                        }
+                        questionList.add(new MultipleChoiceQuestion(question, A, B, C, D, answer));
+                    }
+                    setFirstQuestion();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+    }
         //System.out.println(questionList.size());
         //String data = firebasedatabase().ref('indexCards').orderByChild('word').equalTo('noun')
 
@@ -138,7 +200,7 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
 
         //
         //}
-}
+
 
     private void setFirstQuestion() {
         question.setText(questionList.get(0).getQuestion());
@@ -188,9 +250,6 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
     }
 
     private void checkAnswer(View view, int answer) {
-        //Toast.makeText(this, answer + "", Toast.LENGTH_SHORT).show();
-//        boolean b = questionList.get(currQues).checkAnswer(answer);
-//        Toast.makeText(this, "" + b , Toast.LENGTH_SHORT).show();
         if(questionList.get(currQues).checkAnswer(answer)){
 
             ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
@@ -212,24 +271,6 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
             else if(questionList.get(currQues).getAnswer().equals("4")){
                 option4.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             }
-//            switch(questionList.get(currQues).getAnswer()){
-//
-//                case 1:
-//
-//                    break;
-//                case 2:
-//
-//                    break;
-//                case 3:
-//
-//                    break;
-//                case 4:
-//
-//                    break;
-//            }
-
-
-
         }
 
 
@@ -241,10 +282,21 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
         //Toast.makeText(this, "Entered", Toast.LENGTH_SHORT).show();
         if(currQues == questionList.size()-1){
             //display score - activity
-            Intent intent = new Intent(MultipleQuestionActivity.this, ScoreActivity.class);
-            intent.putExtra("Score",String.valueOf(score) + "/" + String.valueOf(questionList.size()));
-            startActivity(intent);
-            MultipleQuestionActivity.this.finish();
+            if(testNo.equals("Proficiency")){
+                Intent intent = new Intent(MultipleQuestionActivity.this, ProficiencyScoreActivity.class);
+                //ysdddddintent.putExtra("Score",String.valueOf(score) + "/" + String.valueOf(questionList.size()));
+                intent.putExtra("Score",score );
+                intent.putExtra("List size", questionList.size());
+                startActivity(intent);
+                MultipleQuestionActivity.this.finish();
+
+            } else{
+                Intent intent = new Intent(MultipleQuestionActivity.this, ScoreActivity.class);
+                intent.putExtra("Score",String.valueOf(score) + "/" + String.valueOf(questionList.size()));
+                startActivity(intent);
+                MultipleQuestionActivity.this.finish();
+
+            }
 
 
         } else {
