@@ -19,11 +19,11 @@ public class ProficiencyScoreActivity extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_proficiency_score);
 
-//        score = getIntent().getIntExtra("Score",0);
-//        qNum = getIntent().getIntExtra("List size", 0);
+        score = getIntent().getIntExtra("Score",0);
+        qNum = getIntent().getIntExtra("List size", 0);
 
-        score = 0;
-        qNum = 10;
+//        score = 0;
+//        qNum = 10;
 
         determineLevel(score, qNum);
 

@@ -305,10 +305,12 @@ public class ProficiencyExamActivity extends AppCompatActivity implements View.O
     }
 
     private void playAnimation(View view, int value, int component) {
-        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500).setStartDelay(150)
-                .setInterpolator(new DecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
+
+                view.animate().alpha(value).setInterpolator(new DecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
             @Override
-            public void onAnimationStart(Animator animation) {}
+            public void onAnimationStart(Animator animation) {
+                view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500).setStartDelay(150);
+            }
 
             @Override
             public void onAnimationEnd(Animator animation) {
