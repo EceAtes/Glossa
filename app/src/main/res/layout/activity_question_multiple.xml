@@ -37,7 +37,7 @@
             android:layout_margin="25dp"
             android:background="@color/white"
             android:gravity="center"
-            android:text="Question"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -67,7 +67,7 @@
             android:elevation="4dp"
             android:gravity="center"
             android:padding="18dp"
-            android:text="Option 1"
+            android:text=""
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -81,7 +81,7 @@
             android:elevation="4dp"
             android:gravity="center"
             android:padding="18dp"
-            android:text="Option 2"
+            android:text=""
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -95,7 +95,7 @@
             android:elevation="4dp"
             android:gravity="center"
             android:padding="18dp"
-            android:text="Option 3"
+            android:text=""
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -109,7 +109,7 @@
             android:elevation="4dp"
             android:gravity="center"
             android:padding="18dp"
-            android:text="Option 4"
+            android:text=""
             android:textSize="18sp"
             android:textStyle="bold" />
 

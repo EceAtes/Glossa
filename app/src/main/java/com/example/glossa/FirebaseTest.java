@@ -21,45 +21,42 @@ public class FirebaseTest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase_test);
 
-        mDatabase.child("Questions").child("Question1").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("A1-1").child("Test1").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                String question = "", A = "", B = "", C = "", D = "", answer = "";
                 for (DataSnapshot children : dataSnapshot.getChildren()) {
-                    if(children.getKey().equals("Question")){
-                        String q = children.getValue().toString();
-                        System.out.println(q);
+                    for (DataSnapshot child : children.getChildren()) {
+                        if (child.getKey().equals("Question")) {
+                            question = child.getValue().toString();
+                        }
+                        else if (child.getKey().equals("answer")) {
+                            answer = child.getValue().toString();
+                        }
+                        else if (child.getKey().equals("A")) {
+                            A = child.getValue().toString();
+                        }
+                        else if (child.getKey().equals("B")) {
+                            B = child.getValue().toString();
+                        }
+                        else if (child.getKey().equals("C")) {
+                            C = child.getValue().toString();
+                        }
+                        else if (child.getKey().equals("D")) {
+                            D = child.getValue().toString();
+                        }
                     }
+                    System.out.println(new MultipleChoiceQuestion(question, A, B, C,D,answer));
                 }
-
-//                Log.v("keyResult", "   " + thumbUrl);
-                // Log.v("key2","   " + thumbUrl);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-
-
         });
-
     }
 }
-//        ValueEventListener postListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                String question = dataSnapshot.getValue(String.class);
-//                System.out.println(question);
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-//            }
-//        };
-//        mDatabase.addValueEventListener(postListener);
+
 
 

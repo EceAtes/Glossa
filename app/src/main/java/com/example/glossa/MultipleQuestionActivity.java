@@ -36,6 +36,8 @@ import java.util.List;
 
 public class MultipleQuestionActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MultipleQActivity";
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://glossa-4dc57-default-rtdb.europe-west1.firebasedatabase.app").getReference();
+
     boolean isUsed = false;
     private Button option1,
             option2,
@@ -47,7 +49,6 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
     private List<Question> questionList;
     private int currQues,
             score;
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
     @Override
@@ -68,6 +69,8 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
         option3.setOnClickListener(this);
         option4.setOnClickListener(this);
 
+        questionList = new ArrayList<>();
+
         getQuestionsList();
        //System.out.println(db.collection("Testing/Level1/Test1").get(Source.valueOf("QU1")));
         score = 0;
@@ -76,7 +79,55 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
 
     private void getQuestionsList() {
 
+        mDatabase.child("A1-1").child("Test1").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String question = "", A = "", B = "", C = "", D = "", answer = "";
+                int counter = 0;
+                for (DataSnapshot children : dataSnapshot.getChildren()) {
+                    for (DataSnapshot child : children.getChildren()) {
+                        if (child.getKey().equals("Question")) {
+                            question = child.getValue().toString();
+                            counter++;
+                            System.out.println(question + " " +  counter);
+                        }
+                        else if (child.getKey().equals("answer")) {
+                            answer = child.getValue() + "";
+                            counter++;
+                            System.out.println(answer + " " +  counter);
+                        }
+                        else if (child.getKey().equals("A")) {
+                            A = child.getValue().toString();
+                            counter++;
+                            System.out.println(A + " " +  counter);
 
+                        }
+                        else if (child.getKey().equals("B")) {
+                            B = child.getValue().toString();
+                            counter++;
+                            System.out.println(B + " " +  counter);
+                        }
+                        else if (child.getKey().equals("C")) {
+                            C = child.getValue().toString();
+                            counter++;
+                            System.out.println(C + " " +  counter);
+                        }
+                        else if (child.getKey().equals("D")) {
+                            D = child.getValue().toString();
+                            counter++;
+                            System.out.println(D + " " +  counter);
+                        }
+                    }
+                    questionList.add(new MultipleChoiceQuestion(question, A, B, C,D,answer));
+                }
+                setFirstQuestion();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //System.out.println(questionList.size());
         //String data = firebasedatabase().ref('indexCards').orderByChild('word').equalTo('noun')
 
 //        questionList.add(new MultipleChoiceQuestion("Question 1", "A", "B", "C","D","4"));
@@ -85,7 +136,7 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
 //        questionList.add(new MultipleChoiceQuestion("Question 4", "r", "t", "b","v","4"));
 //        questionList.add(new MultipleChoiceQuestion("Question 5", "w", "e", "n","x","4"));
 
-        //setFirstQuestion();
+        //
         //}
 }
 

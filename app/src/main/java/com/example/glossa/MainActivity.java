@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        Intent intent = new Intent(MainActivity.this, FirebaseTest.class);
+        Intent intent = new Intent(MainActivity.this, TestingMenuActivity.class);
         startActivity(intent);
 
     }

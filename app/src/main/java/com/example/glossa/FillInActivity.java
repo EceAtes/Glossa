@@ -1,5 +1,6 @@
 package com.example.glossa;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +21,11 @@ import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -30,6 +36,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FillInActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "MultipleQActivity";
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://glossa-4dc57-default-rtdb.europe-west1.firebasedatabase.app").getReference();
     private String answer;
     private TextView question,
             qNum,
@@ -60,8 +68,8 @@ public class FillInActivity extends AppCompatActivity implements View.OnClickLis
         currQues = 0;
         questionList = new ArrayList<>();
         //questionList.add(new FillInQuestion("Question 1", "A"));
-
-        firestore = FirebaseFirestore.getInstance();
+//
+//        firestore = FirebaseFirestore.getInstance();
 
         getQuestionList();
 
@@ -69,23 +77,58 @@ public class FillInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void getQuestionList(){
-        questionList  = new ArrayList<>();
-        documentReference = firestore.collection("Testing/Level1/Test1").document("Question" + (currQues+1));
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+
+        mDatabase.child("A1-1").child("Test3").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String question = "", answer = "";
+                int counter = 0;
+                for (DataSnapshot children : dataSnapshot.getChildren()) {
+                    for (DataSnapshot child : children.getChildren()) {
+
+                        if (child.getKey().equals("Question")) {
+                            question = child.getValue().toString();
+                            System.out.println(question + " " +  counter);
+                        }
+                        else if (child.getKey().equals("answer")) {
+                            answer = child.getValue() + "";
+                            System.out.println(answer + " " +  counter);
+                        }
+
+                    }
+                    counter++;
+                    questionList.add(new FillInQuestion(question,answer));
+                    System.out.println(questionList.get(counter-1));
+                }
+                setFirstQuestion();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-        //firestore.collection("Testing").document("Level1" + );
-        questionList.add(new FillInQuestion("Question 1, answer is a", "a"));
-        questionList.add(new FillInQuestion("Question 2, answer is ss", "ss"));
-        questionList.add(new FillInQuestion("Question 3, answer is d d", "d d"));
-        questionList.add(new FillInQuestion("Question 4, answer is f", "f"));
-        questionList.add(new FillInQuestion("Question 5, answer is g", "g"));
+//        questionList  = new ArrayList<>();
+//        documentReference = firestore.collection("Testing/Level1/Test1").document("Question" + (currQues+1));
+//        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+//            @Override
+//            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+//
+//            }
+//        });
+//        //firestore.collection("Testing").document("Level1" + );
+//        questionList.add(new FillInQuestion("Question 1, answer is a", "a"));
+//        questionList.add(new FillInQuestion("Question 2, answer is ss", "ss"));
+//        questionList.add(new FillInQuestion("Question 3, answer is d d", "d d"));
+//        questionList.add(new FillInQuestion("Question 4, answer is f", "f"));
+//        questionList.add(new FillInQuestion("Question 5, answer is g", "g"));
+//
+//        qNum.setText(String.valueOf(1) + "/" + String.valueOf(questionList.size()));
+//        question.setText(questionList.get(0).getQuestion());
+    }
 
-        qNum.setText(String.valueOf(1) + "/" + String.valueOf(questionList.size()));
+    public void setFirstQuestion(){
         question.setText(questionList.get(0).getQuestion());
+        qNum.setText(String.valueOf(1) + "/" + String.valueOf(questionList.size()));
     }
 
     @Override
