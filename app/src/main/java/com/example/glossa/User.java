@@ -2,16 +2,15 @@ package com.example.glossa;
 
 public class User {
 
-    public String username;
-    public String email;
+    public String name,email,username,password;
 
-    public User() {
+    public User(){
 
     }
-
-    public User(String username, String email) {
-        this.username = username;
-        this.email = email;
+    public User(String name1, String email1, String username1, String password1){
+        name = name1;
+        email = email1;
+        username = username1;
+        password = password1;
     }
-
 }

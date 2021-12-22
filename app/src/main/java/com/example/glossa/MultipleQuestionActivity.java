@@ -71,15 +71,26 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
 
         questionList = new ArrayList<>();
 
-        getQuestionsList();
+        getQuestionsList(savedInstanceState);
        //System.out.println(db.collection("Testing/Level1/Test1").get(Source.valueOf("QU1")));
         score = 0;
 
     }
 
-    private void getQuestionsList() {
+    private void getQuestionsList(Bundle bundle) {
+        String newString;
+        if (bundle == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newString= null;
+            } else {
+                newString= extras.getString("STRING_I_NEED");
+            }
+        } else {
+            newString= (String) bundle.getSerializable("STRING_I_NEED");
+        }
 
-        mDatabase.child("A1-1").child("Test1").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("A1-1").child("Test" + newString ).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String question = "", A = "", B = "", C = "", D = "", answer = "";

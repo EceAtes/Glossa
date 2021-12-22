@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                Intent intent = new Intent(MainActivity.this, ProficiencyExamActivity.class);
+                Intent intent = new Intent(MainActivity.this, TestingMenuActivity.class);
                 startActivity(intent);
 //                SplashActivity.this.finish();
 
