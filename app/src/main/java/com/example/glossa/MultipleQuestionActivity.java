@@ -50,6 +50,7 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
     private int currQues,
             score;
     private String testNo;
+    private boolean isCompleted = false;
 
 
     @Override
@@ -293,6 +294,11 @@ public class MultipleQuestionActivity extends AppCompatActivity implements View.
             } else{
                 Intent intent = new Intent(MultipleQuestionActivity.this, ScoreActivity.class);
                 intent.putExtra("Score",String.valueOf(score) + "/" + String.valueOf(questionList.size()));
+                if(!isCompleted && score > questionList.size()/2){
+                    System.out.println("entered");
+                    register.getUser().updateCompletedTest();
+                    System.out.println("comp tests" + register.getUser().getCompletedTests());
+                }
                 startActivity(intent);
                 MultipleQuestionActivity.this.finish();
 

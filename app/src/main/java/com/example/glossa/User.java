@@ -14,6 +14,7 @@ public class User {
         username = username1;
         password = password1;
         level = "";
+        completedTests = 0;
     }
 
     public User(String name1, String email1, String username1, String password1, String level){
@@ -22,9 +23,12 @@ public class User {
         username = username1;
         password = password1;
         this.level = level;
+        completedTests = 0;
 
     }
-
+    public void updateCompletedTest(){
+        completedTests++;
+    }
     public int getCompletedTests() {
         return completedTests;
     }
