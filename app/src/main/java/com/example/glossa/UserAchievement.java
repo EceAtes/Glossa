@@ -3,12 +3,19 @@ package com.example.glossa;
 public class UserAchievement {
     int totalTests, compTest;
     double compPercentage;
+    User user;
 
     public UserAchievement(int totalTests, int compTest, double compPercentage) {
         this.totalTests = totalTests;
         this.compTest = compTest;
         this.compPercentage = compPercentage;
     }
+
+    public UserAchievement(User user){
+        this.user = user;
+        compTest = 3;
+    }
+
 
     public int getTotalTests() {
         return totalTests;

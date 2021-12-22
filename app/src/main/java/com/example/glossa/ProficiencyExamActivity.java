@@ -265,8 +265,7 @@ public class ProficiencyExamActivity extends AppCompatActivity implements View.O
         System.out.println("Entered mq nextQ");
         if(currQues == questionList.size()-1){
             Intent intent = new Intent(ProficiencyExamActivity.this, ProficiencyScoreActivity.class);
-            intent.putExtra("Score",score );
-            intent.putExtra("List size", questionList.size());
+
             //display score - activity
 //            Intent intent = new Intent(ProficiencyExamActivity.this, ScoreActivity.class);
 //            intent.putExtra("Score",String.valueOf(score) + "/" + String.valueOf(questionList.size()));

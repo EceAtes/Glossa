@@ -21,20 +21,20 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="40dp"
-            android:text="Your Progess at A1.1 so far"
+            android:text="Your Progress so far"
             android:textColor="@color/purple_200"
             android:textSize="25sp" />
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/percentage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="25dp"
-            android:text="The completiton percentage: %0"
+            android:text="The completition percentage: %0"
             android:textColor="@color/black"
             android:textSize="20sp" />
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/solvedTest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -44,12 +44,12 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/totalinLevel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="Total tests in the level A1.1: 5"
+            android:text="Total tests in the level: 0"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -72,7 +72,8 @@
             app:layout_constraintHorizontal_bias="0.105"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/star"
-            tools:layout_editor_absoluteY="255dp"></ImageView>
+            tools:layout_editor_absoluteY="255dp"
+            android:visibility="invisible"></ImageView>
 
         <ImageView
             android:id="@+id/star2"
@@ -82,7 +83,9 @@
             app:layout_constraintHorizontal_bias="0.105"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/star"
-            tools:layout_editor_absoluteY="255dp"></ImageView>
+            tools:layout_editor_absoluteY="255dp"
+            android:visibility="invisible"
+            ></ImageView>
 
         <ImageView
             android:id="@+id/star3"
@@ -92,7 +95,9 @@
             app:layout_constraintHorizontal_bias="0.105"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/star"
-            tools:layout_editor_absoluteY="255dp"></ImageView>
+            tools:layout_editor_absoluteY="255dp"
+            android:visibility="invisible"
+            ></ImageView>
 
         <ImageView
             android:id="@+id/star4"
@@ -102,7 +107,9 @@
             app:layout_constraintHorizontal_bias="0.105"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/star"
-            tools:layout_editor_absoluteY="255dp"></ImageView>
+            tools:layout_editor_absoluteY="255dp"
+            android:visibility="invisible">
+        </ImageView>
 
         <ImageView
             android:id="@+id/star5"
@@ -112,7 +119,8 @@
             app:layout_constraintHorizontal_bias="0.105"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/star"
-            tools:layout_editor_absoluteY="255dp"></ImageView>
+            tools:layout_editor_absoluteY="255dp"
+            android:visibility="invisible"></ImageView>
 
     </LinearLayout>
 

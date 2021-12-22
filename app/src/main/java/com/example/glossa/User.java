@@ -3,6 +3,7 @@ package com.example.glossa;
 public class User {
 
     public String name,email,username,password, level;
+    int completedTests;
 
     public User(){
 
@@ -21,6 +22,15 @@ public class User {
         username = username1;
         password = password1;
         this.level = level;
+
+    }
+
+    public int getCompletedTests() {
+        return completedTests;
+    }
+
+    public void setCompletedTests(int completedTests) {
+        this.completedTests = completedTests;
     }
 
     public String getName() {

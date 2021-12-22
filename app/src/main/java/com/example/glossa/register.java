@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class register extends AppCompatActivity {
-    private static User user;
+    private static User appUser;
     private Button registerEnter;
     private EditText name;
     private EditText email;
@@ -58,7 +58,7 @@ public class register extends AppCompatActivity {
             public void onClick(View v) {
                 registerUser();
                 if(registerUser()){
-                    Intent intent2 = new Intent(register.this,MultipleQuestionActivity.class);
+                    Intent intent2 = new Intent(register.this,RegisterSuccessful.class);
                     String testCode = "Proficiency";
                     intent2.putExtra("testNo", testCode);
                     startActivity(intent2);
@@ -68,27 +68,27 @@ public class register extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent3 = new Intent(register.this, MultipleQuestionActivity.class);
-                User user = new User(name.getText().toString(),email.getText().toString(),username.getText().toString(),password.getText().toString());
+                Intent intent3 = new Intent(register.this, RegisterSuccessful.class);
                 String testCode = "Proficiency";
+                //User user = new User(name.getText().toString(),email.getText().toString(),username.getText().toString(),password.getText().toString());
 
-                intent3.putExtra("testNo", testCode);
-                intent3.putExtra("email", email.getText().toString());
-                intent3.putExtra("username", username.getText().toString());
-                intent3.putExtra("password", password.getText().toString());
+//                intent3.putExtra("testNo", testCode);
+//                intent3.putExtra("email", email.getText().toString());
+//                intent3.putExtra("username", username.getText().toString());
+//                intent3.putExtra("password", password.getText().toString());
 
                 startActivity(intent3);
             }
         });
-        user = new User(name.getText().toString(),email.getText().toString(),username.getText().toString(),password.getText().toString());
+        appUser = new User(name.getText().toString(),email.getText().toString(),username.getText().toString(),password.getText().toString());
     }
 
     public static User getUser(){
-        return user;
+        return appUser;
     }
 
-    public boolean validatePassword(){
-        String value = password.getText().toString();
+    public boolean validatePassword( String value){
+        //String value = password.getText().toString();
 
         if(value.isEmpty()){
             password.setError("Password field should not be empty");
@@ -103,8 +103,8 @@ public class register extends AppCompatActivity {
         }
         return true;
     }
-    public boolean validateName(){
-        String nameString = name.getText().toString();
+    public boolean validateName( String nameString){
+        //String nameString = name.getText().toString();
         if(nameString.isEmpty()){
             name.setError("Name is required");
             name.requestFocus();
@@ -113,8 +113,8 @@ public class register extends AppCompatActivity {
         return true;
     }
 
-    public boolean validateEmail() {
-        String emailString = email.getText().toString();
+    public boolean validateEmail( String emailString) {
+        //String emailString = email.getText().toString();
         if (emailString.isEmpty()) {
             email.setError("Email is required");
             email.requestFocus();
@@ -128,8 +128,8 @@ public class register extends AppCompatActivity {
         return true;
     }
 
-    public boolean validateUserName(){
-        String usernameString = username.getText().toString();
+    public boolean validateUserName( String usernameString){
+        //String usernameString = username.getText().toString();
         if(usernameString.isEmpty()){
             username.setError("User name is required");
             username.requestFocus();
@@ -153,13 +153,13 @@ public class register extends AppCompatActivity {
          */
 
 
-        if(!validateEmail())
+        if(!validateEmail(  emailString))
             return false;
-        if(!validatePassword())
+        if(!validatePassword(  passwordString))
             return false;
-        if(!validateName())
+        if(!validateName(  nameString))
             return false;
-        if(!validateUserName())
+        if(!validateUserName( usernameString))
             return false;
 
 
@@ -212,10 +212,10 @@ public class register extends AppCompatActivity {
                             });
                         }
                         */
-                        else{
-                            Toast.makeText(register.this,"Register is not completed!",Toast.LENGTH_LONG).show();
-                            p1.setVisibility(View.GONE);
-                        }
+//                        else{
+//                            Toast.makeText(register.this,"Register is not completed!",Toast.LENGTH_LONG).show();
+//                            p1.setVisibility(View.GONE);
+//                        }
                     }
                 });
 
