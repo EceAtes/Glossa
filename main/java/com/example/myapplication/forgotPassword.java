@@ -26,9 +26,6 @@ public class forgotPassword extends AppCompatActivity {
     FirebaseAuth auth2;
     private EditText password;
     private EditText newPassword;
-    private MainActivity ma;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
     FirebaseUser user;
 
     @Override

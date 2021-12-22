@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressBar p1;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         username = findViewById(R.id.username);
         password = findViewById(R.id.passwordEditText);
+
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void loginUser(){
         if(validateUserName() && validatePassword()){
-            isUser(username.getText().toString(),password.getText().toString());
+            isUser();
             return;
         }
         else{
@@ -101,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void isUser(String userName, String userPassword) {
+    public void isUser() {
+        String userName = username.getText().toString();
+        String userPassword = password.getText().toString();
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://glossa-4dc57-default-rtdb.europe-west1.firebasedatabase.app");
         databaseReference = firebaseDatabase.getReference("user");

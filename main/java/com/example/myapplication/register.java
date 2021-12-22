@@ -58,7 +58,7 @@ public class register extends AppCompatActivity {
             public void onClick(View v) {
                 registerUser();
                 if(registerUser()){
-                    Intent intent2 = new Intent(register.this,proficiencyExam.class);
+                    Intent intent2 = new Intent(register.this,menu.class);
                     startActivity(intent2);
                 }
             }
@@ -72,8 +72,7 @@ public class register extends AppCompatActivity {
         });
     }
 
-    public boolean validatePassword(){
-        String value = password.getText().toString();
+    public boolean validatePassword(String value){
 
         if(value.isEmpty()){
             password.setError("Password field should not be empty");
@@ -88,8 +87,9 @@ public class register extends AppCompatActivity {
         }
         return true;
     }
-    public boolean validateName(){
-        String nameString = name.getText().toString();
+
+    public boolean validateName(String nameString){
+
         if(nameString.isEmpty()){
             name.setError("Name is required");
             name.requestFocus();
@@ -98,8 +98,8 @@ public class register extends AppCompatActivity {
         return true;
     }
 
-    public boolean validateEmail() {
-        String emailString = email.getText().toString();
+    public boolean validateEmail(String emailString) {
+
         if (emailString.isEmpty()) {
             email.setError("Email is required");
             email.requestFocus();
@@ -113,8 +113,8 @@ public class register extends AppCompatActivity {
         return true;
     }
 
-    public boolean validateUserName(){
-        String usernameString = username.getText().toString();
+    public boolean validateUserName(String usernameString){
+
         if(usernameString.isEmpty()){
             username.setError("User name is required");
             username.requestFocus();
@@ -138,14 +138,13 @@ public class register extends AppCompatActivity {
         myRef.child(usernameString).push().setValue(user1);
          */
 
-
-        if(!validateEmail())
+        if(!validateEmail(emailString))
             return false;
-        if(!validatePassword())
+        if(!validatePassword(passwordString))
             return false;
-        if(!validateName())
+        if(!validateName(nameString))
             return false;
-        if(!validateUserName())
+        if(!validateUserName(usernameString))
             return false;
 
 
@@ -179,7 +178,14 @@ public class register extends AppCompatActivity {
                             FirebaseDatabase.getInstance("https://glossa-4dc57-default-rtdb.europe-west1.firebasedatabase.app").getReference("user")
                                     .child(usernameString)//FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user);
-                        }/*.addOnCompleteListener(new OnCompleteListener<Void>() {
+                            Toast.makeText(register.this,"Register SUCCESSFUL",Toast.LENGTH_LONG).show();
+                        }
+                        else if(FirebaseDatabase.getInstance("https://glossa-4dc57-default-rtdb.europe-west1.firebasedatabase.app").getReference("user")
+                                .child(usernameString) == null){
+                            Toast.makeText(register.this,"Register is not completed!",Toast.LENGTH_LONG).show();
+                            p1.setVisibility(View.GONE);
+                        }
+                        /*.addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
@@ -193,10 +199,6 @@ public class register extends AppCompatActivity {
                             });
                         }
                         */
-                        else{
-                            Toast.makeText(register.this,"Register is not completed!",Toast.LENGTH_LONG).show();
-                            p1.setVisibility(View.GONE);
-                        }
                     }
                 });
 
