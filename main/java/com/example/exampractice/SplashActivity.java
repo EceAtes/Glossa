@@ -46,13 +46,8 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-
                 //sleep(3000);
-
                 loadData();
-
-
-
             }
 
         }.start();

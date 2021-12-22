@@ -21,6 +21,7 @@ public class TopicsActivity extends AppCompatActivity {
 
     private GridView topics_grid;
     private FirebaseFirestore firestore;
+    public static int category_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class TopicsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         String title = getIntent().getStringExtra("CATEGORY");
+        category_id = getIntent().getIntExtra("CATEGORY_ID",1);
         getSupportActionBar().setTitle(title);
 
         topics_grid = findViewById(R.id.topics_gridView);
@@ -42,7 +44,7 @@ public class TopicsActivity extends AppCompatActivity {
 
     private void loadTopics() {
 
-        firestore.collection("LEARNING").document("FLASHCARD")
+        firestore.collection("LEARNING").document("CAT"+ String.valueOf(category_id))
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

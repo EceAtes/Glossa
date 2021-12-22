@@ -1,5 +1,6 @@
 package com.example.exampractice;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,16 @@ public class TopicsAdapter extends BaseAdapter {
         else {
             view = convertView;
         }
+
+        view.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(parent.getContext(), FlashcardActivity.class);
+                intent.putExtra("SETNO", position + 1);
+                parent.getContext().startActivity(intent);
+            }
+        });
 
         ((TextView) view.findViewById(R.id.topicNo_tv)).setText(String.valueOf(position+1));
 
