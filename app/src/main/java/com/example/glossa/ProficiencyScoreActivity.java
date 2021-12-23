@@ -12,6 +12,11 @@ import android.widget.Toast;
 public class ProficiencyScoreActivity extends AppCompatActivity implements View.OnClickListener{
     int score,
         qNum;
+    String name;
+//    User user;
+//    String username;
+//    String email;
+//    String password;
     String level,
            explanation = "You will skip the test stages that are lower than your level!";
 
@@ -22,7 +27,12 @@ public class ProficiencyScoreActivity extends AppCompatActivity implements View.
 
         score = getIntent().getIntExtra("Score",0);
         qNum = getIntent().getIntExtra("List size", 0);
+//        String name = getIntent().getStringExtra("name");
+//        String  username = getIntent().getStringExtra("username");
+//        String email = getIntent().getStringExtra("email");
+//        String password = getIntent().getStringExtra("password");
 
+        ;
 //        score = 0;
 //        qNum = 10;
 
@@ -54,6 +64,8 @@ public class ProficiencyScoreActivity extends AppCompatActivity implements View.
         } else{
             level = "A2.2";
         }
+        register.getUser().setLevel(level);
+        System.out.println(register.getUser().getLevel());
     }
 
     @Override

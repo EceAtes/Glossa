@@ -5,8 +5,10 @@
       <map>
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/drawable/circle.xml" value="0.16296296296296298" />
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/drawable/gradient_background.xml" value="0.1425925925925926" />
+        <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/drawable/main_background.xml" value="0.1" />
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/drawable/round_rectangle.xml" value="0.1" />
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_fill_in.xml" value="0.25" />
+        <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_firebase_test.xml" value="0.103125" />
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_flashcards.xml" value="0.4" />
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_learning.xml" value="0.264" />
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_login.xml" value="0.2" />
@@ -16,6 +18,9 @@
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_proficiency_score.xml" value="0.4" />
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_question.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_question_multiple.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_register.xml" value="0.11510416666666666" />
+        <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_register1.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_register3.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_register_successful.xml" value="0.264" />
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_score.xml" value="0.264" />
         <entry key="..\:/Users/eceat/AndroidStudioProjects/Glossa/app/src/main/res/layout/activity_short_notes.xml" value="0.264" />

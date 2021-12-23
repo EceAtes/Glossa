@@ -15,7 +15,7 @@ public class RegisterSuccessful extends AppCompatActivity {
         setContentView(R.layout.activity_register_successful);
     }
     public void buttonListener(View view) {
-        Intent intent = new Intent(RegisterSuccessful.this, SplashActivity.class);
+        Intent intent = new Intent(RegisterSuccessful.this, TestingMenuActivity.class);
         startActivity(intent);
     }
 }
