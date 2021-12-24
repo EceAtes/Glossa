@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShortNotesActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:textStyle="bold"
+            android:text="A1 topics"
+            android:textSize="20sp"
+            ></TextView>
+
+        <Button
+            android:id="@+id/flashcards1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:background="@drawable/round_rectangle"
+            android:layout_marginBottom="0dp"
+            android:textSize="20sp"
+            android:text="Flashcards1"
+            android:onClick="onClick"></Button>
+
+        <Button
+            android:id="@+id/flashcards2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:background="@drawable/round_rectangle"
+            android:layout_marginBottom="0dp"
+            android:textSize="20sp"
+            android:text="Flashcards2"
+            android:onClick="onClick"></Button>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:background="@drawable/round_rectangle"
+            android:layout_marginBottom="0dp"
+            android:textSize="20sp"
+            android:text="2,5" ></Button>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:background="@drawable/round_rectangle"
+            android:layout_marginBottom="0dp"
+            android:textSize="20sp"
+            android:text="3" ></Button>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:background="@drawable/round_rectangle"
+            android:layout_marginBottom="0dp"
+            android:textSize="20sp"
+            android:text="4" ></Button>
+
+        <Button
+            android:id="@+id/goBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/round_rectangle"
+            android:text="Go back"
+            android:textSize="20sp"
+            android:onClick="onClick"></Button>
+
+
+    </LinearLayout>
+
+</ScrollView>
