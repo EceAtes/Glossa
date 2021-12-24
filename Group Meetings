@@ -1,0 +1,30 @@
+4th DECEMBER
+
+Independent learning started. Creating activities on Android Studio and getting familiar with basic .xml snytax. 
+
+9th DECEMBER
+
+Preparing the implementation of the project. Classes, the relation between them and the workload is discussed. 
+
+13th DECEMBER
+
+Github project for Glossa is created. First commit was on score activity. Work distribution is settled.
+Alper - Learning (Creating flashcards and short notes)
+Aytekin - Register / Login (Connected to Firebase)
+Ece - Testing (Fill-in and multiple choice questions fetched from Firebase)
+
+18th DECEMBER
+
+Each team member has committed a file according to their parts. Discussions about combining the code has started.
+
+19th DECEMBER
+
+Experimenting with Firebase services such as realtime database as well as Firestore and Firebase Authentication. Final decision was to use Firebase realtime database.
+
+21th DECEMBER
+
+Merging all parts of the project. Preparation for the project demo and presentation.
+
+24th DECEMBER
+
+Updating Design report, UML diagram and the ReadMe file on GitHub for project submission. 
