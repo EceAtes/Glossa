@@ -80,12 +80,6 @@ public class register extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent3 = new Intent(register.this, RegisterSuccessful.class);
                 String testCode = "Proficiency";
-                //User user = new User(name.getText().toString(),email.getText().toString(),username.getText().toString(),password.getText().toString());
-
-//                intent3.putExtra("testNo", testCode);
-//                intent3.putExtra("email", email.getText().toString());
-//                intent3.putExtra("username", username.getText().toString());
-//                intent3.putExtra("password", password.getText().toString());
 
                 startActivity(intent3);
             }
@@ -155,14 +149,7 @@ public class register extends AppCompatActivity {
         String usernameString = username.getText().toString();
         String passwordString = password.getText().toString();
 
-        // if the username is already used give an error
-        /*User user1 = new User(nameString,emailString,usernameString,passwordString);
-        database = FirebaseDatabase.getInstance("https://glossa-4dc57-default-rtdb.europe-west1.firebasedatabase.app");
-        myRef = database.getReference("users");
-        myRef.child(usernameString).push().setValue(user1);
-         */
-
-
+        
         if(!validateEmail(  emailString))
             return false;
         if(!validatePassword(  passwordString))
@@ -171,26 +158,8 @@ public class register extends AppCompatActivity {
             return false;
         if(!validateUserName( usernameString))
             return false;
+        
 
-
-
-
-        /* Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-*/
         p1.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(emailString,passwordString)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -208,24 +177,6 @@ public class register extends AppCompatActivity {
                             Toast.makeText(register.this, "Register is not completed!", Toast.LENGTH_SHORT).show();
                             p1.setVisibility(View.GONE);
                         }
-                        /*.addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(register.this,"User has been registered successfully!",Toast.LENGTH_LONG).show();
-                                    }
-                                    else{
-                                        Toast.makeText(register.this,"The user has not registered!",Toast.LENGTH_LONG).show();
-                                    }
-                                    p1.setVisibility(View.GONE);
-                                }
-                            });
-                        }
-                        */
-//                        else{
-//                            Toast.makeText(register.this,"Register is not completed!",Toast.LENGTH_LONG).show();
-//                            p1.setVisibility(View.GONE);
-//                        }
                     }
                 });
 
